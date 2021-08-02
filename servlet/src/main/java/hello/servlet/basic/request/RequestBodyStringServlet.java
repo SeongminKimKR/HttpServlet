@@ -16,6 +16,9 @@ import java.nio.charset.StandardCharsets;
 public class RequestBodyStringServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /**
+         * getInputStream() : 바이트 코드를 반환
+         */
         ServletInputStream inputStream = request.getInputStream();
 
         /**
