@@ -20,16 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5a0aebd9-3de4-437c-a111-affc6ecd45f8" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/servlet/src/main/java/hello/servlet/web/servletmvc/MvcMemberFormServlet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servlet/src/main/webapp/WEB-INF/views/new-form.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servlet/src/main/webapp/jsp/members.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servlet/src/main/webapp/jsp/members/new-form.jsp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/servlet/src/main/webapp/jsp/members/save.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet/src/main/webapp/basic.html" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/src/main/webapp/basic.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet/src/main/webapp/basic/hello-form.html" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/src/main/webapp/basic/hello-form.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/servlet/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/servlet/src/main/java/hello/servlet/ServletApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/servlet/src/main/java/hello/servlet/ServletApplication.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +63,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -155,9 +149,9 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="461" y="164" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1627917464191" />
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1627913306166">
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1628089850015">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1627913306166" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1628089850015" />
   </component>
 </project>
