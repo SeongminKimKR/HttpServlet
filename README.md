@@ -336,3 +336,99 @@
     ```
   - 모델 객체를 프론트 컨트롤러에서 생성해서 넘겨준다. 컨트롤러에서 모델 객체에 값을 담아서 반환한다.
   
+- 보완점
+    - 만약 다른 버전의 개발자들이 각각 다른 컨트롤러를 사용하고 싶어도 정해진 컨트롤러를 사용해야한다.
+    
+### v5
+
+- 구조
+
+    ![v5.PNG](./image/chapter5/v5.PNG)
+    
+- 핵심 로직
+
+    - MyHandlerAdapter.java
+        ```
+          public interface MyHandlerAdapter {
+          
+              boolean support (Object handler);
+          
+              ModelView handle(HttpServletRequest request, HttpServletResponse response, Object handler
+              ) throws ServletException, IOException;
+          }
+        ```
+        - support() 
+            - handler는 컨트롤러를 의미하고, 어댑터가 해당 컨트롤러를 처리할 수 있는지 판단한다.
+        - handle()
+            - 어댑터는 실제 컨트롤러를 호출하고, 그 결과로 ModelView를 반환해야 한다.
+        
+            - 실제 컨트롤러가 ModelView를 반환하지 못하면, 어댑터가 ModelView를 직접 생성해서라도 반환해야 한다.
+            - 이전에는 프론트 컨트롤러가 실제 컨트롤러를 호출했지만 이제는 이 어댑터를 통해서 실제 컨트롤러가 호출된다.
+     
+     - FrontControllerServletV5.java
+        ```
+           public FrontControllerServletV5() {
+               initHandlerMappingMap();
+               initHandlerAdapters();
+           }
+       
+           private void initHandlerMappingMap() {
+               handlerMappingMap.put("/front-controller/v5/v3/members/new-form", new MemberFormControllerV3());
+               handlerMappingMap.put("/front-controller/v5/v3/members/save", new MemberSaveControllerV3());
+               handlerMappingMap.put("/front-controller/v5/v3/members", new MemberListControllerV3());
+       
+               handlerMappingMap.put("/front-controller/v5/v4/members/new-form", new MemberFormControllerV4());
+               handlerMappingMap.put("/front-controller/v5/v4/members/save", new MemberSaveControllerV4());
+               handlerMappingMap.put("/front-controller/v5/v4/members", new MemberListControllerV4());
+           }
+       
+           private void initHandlerAdapters() {
+               handlerAdapters.add(new ControllerV3HandlerAdapter());
+               handlerAdapters.add(new ControllerV4HandlerAdapter());
+           }
+        ```
+       - 이전에는 컨트롤러를 직접 매핑해서 사용했다. 그런데 이제는 어댑터를 사용하기 때문에, 
+       컨트롤러 뿐만아니라 어댑터가 지원하기만 하면, 어떤 것이라도 URL에 매핑해서 사용할 수 있다. 
+       그래서 이름을 컨트롤러에서 더 넒은 범위의 핸들러로 변경했다.]
+      
+       - 생성자를 통하여 핸들러 맵핑과 어댑터를 등록한다.
+       
+       ```
+       private Object getHandler(HttpServletRequest request) {
+            String requestURI = request.getRequestURI();
+            return handlerMappingMap.get(requestURI);
+       }
+       ```
+       - 핸들러 맵핑 정보인 handlerMappingMap에서 URL에서 맵핑된 핸들러(컨트롤러) 캑체를 반환한다.
+       
+       ```
+       private MyHandlerAdapter getHandlerAdapter(Object handler) {
+               for (MyHandlerAdapter adapter : handlerAdapters) {
+                   if (adapter.support(handler)) {
+                       return adapter;
+                   }
+               }
+               throw new IllegalArgumentException("handler adapter를 찾을 수 없습니다. handler =" + handler);
+       }
+       ```
+       - handler(컨트롤러)를 처리할 수 있는 어댑터를 찾아서 반환한다.
+       - 예를들어, handler가 ControllerV3 인터페이스를 구현했다면, ControllerV3HandlerAdapter 객체가 반환된다.
+       
+## Spring MVC 
+ - 지금까지 v1~v5까지 프레임워크를 점진적으로 구조를 개선했다.
+ - 이것은 사실 스프링 MVC와 거의 같은 구조로 작동하고 있다.
+ 
+    ![springmvc.PNG](./image/chapter6/springmvc.PNG)
+  
+    - DispatcherServlet(이전에 구현한 FrontController와 거의 동일)
+        
+        - HttpServlet 을 상속 받아서 사용하고, 서블릿으로 동작한다.
+        
+        - 스프링 부트는 DispacherServlet 을 서블릿으로 자동으로 등록하면서 모든 경로( urlPatterns="/" )에 대해서 매핑한다.
+        
+        - HttpServlet 이 제공하는 serivce() 가 호출된다. 그리고 스프링 MVC는 DispatcherServlet 의 부모인 FrameworkServlet 에서 service() 를 오버라이드
+          했고 최종적으로 DispacherServlet.doDispatch().
+          
+        - doDispatch()에서 위의 그림과 같은 흐름으로 최종적으로 뷰를 렌더링한다.
+        
+        - 이전에 v5에 구현해 놨던 흐름과 같이 어댑터를 통해 요청에 해당하는 컨트롤러를 호출하고 뷰를 반환하는 로직이 거의 동일하다. 
