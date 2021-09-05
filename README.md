@@ -30,7 +30,7 @@
  - WAS가 오류로 인해 작동 하지 않으면 웹 서버가 오류 화면을 제공할 수 있다.
  
  ### 서블릿을 지원하는 WAS를 사용해야 하는 이유
- <div align=center> ![was.PNG](./image/chapter1/was.PNG)  </div>
+ ![was.PNG](./image/chapter1/was.PNG)
  - 개발자는 HTTP 통신에 관련된 개발을 하지 않고, 서비스에 필요한 기능 구현에만 집중할 수 있게 도와준다.
 ---
 ## 서블릿으로만 개발
